@@ -3,6 +3,7 @@
 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+from voluptuous import Schema, Url
 import os
 import time
 import sys
@@ -29,8 +30,9 @@ def parseContent(url):
     titles = soup.find_all("h2", attrs={"amb-component": "entryItemTitle"})
     for title in titles:
         link = title.find("a").get("href")
-        print(link)
-        saveContent(link)
+        schema = Schema(Url())
+        print(schema(link))
+        saveContent(schema(link))
 
     next = soup.find("a", attrs={"amb-component": "paginationNext"})
     if next is not None:
