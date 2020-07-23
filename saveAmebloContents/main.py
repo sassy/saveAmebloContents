@@ -39,8 +39,7 @@ def parseContent(baseUrl, url):
         return baseUrl + next.get("href")
     else:
         return None
-
-if __name__ == '__main__':
+def main():
     if len(sys.argv) < 2:
         print("input ameblo id")
         sys.exit()
@@ -55,3 +54,7 @@ if __name__ == '__main__':
         url = parseContent(baseUrl, url)
         time.sleep(3)
     createIndexPage()
+
+if __name__ == '__main__':
+    main()
+    
